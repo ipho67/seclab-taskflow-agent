@@ -42,7 +42,7 @@ export AI_API_TOKEN=<your_github_token>
 
 Or, if you are using GitHub Codespaces, then you can [add a Codespace secret](https://github.com/settings/codespaces/secrets/new) so that `AI_API_TOKEN` is automatically available when working in a Codespace.
 
-Many of the MCP servers in the [seclab-taskflow](https://github.com/GitHubSecurityLab/seclab-taskflows) repo also need an environment variable named `GH_TOKEN` for accessing the GitHub API. You can use two separate PATs if you want, or you can use one PAT for both purposes, like this:
+The GitHub MCP toolbox and many MCP servers in the [seclab-taskflow](https://github.com/GitHubSecurityLab/seclab-taskflows) repo use `GH_TOKEN` for GitHub API access. Set it to the raw PAT value; the GitHub MCP toolbox adds the `Bearer` authorization scheme when making its request. You can use a separate PAT from the AI token, or share one like this:
 
 ```sh
 export GH_TOKEN=$AI_API_TOKEN
@@ -294,7 +294,7 @@ server_params:
   url: https://api.githubcopilot.com/mcp/
   #See https://github.com/github/github-mcp-server/blob/main/docs/remote-server.md
   headers:
-    Authorization: "{{ env GITHUB_AUTH_HEADER }}"
+    Authorization: "Bearer {{ env GH_TOKEN }}"
   optional_headers:
     X-MCP-Toolsets: "{{ env GITHUB_MCP_TOOLSETS }}"
     X-MCP-Readonly: "{{ env GITHUB_MCP_READONLY }}"
