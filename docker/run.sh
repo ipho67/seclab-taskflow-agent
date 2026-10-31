@@ -12,7 +12,7 @@
 #   git clone https://github.com/GitHubSecurityLab/seclab-taskflow-agent.git
 #   cd seclab-taskflow-agent/src
 #   export AI_API_TOKEN=<My GitHub PAT>
-#   export GITHUB_AUTH_HEADER=<My GitHub PAT>
+#   export GH_TOKEN=<My GitHub PAT>
 #   sudo -E ../docker/run.sh -p seclab_taskflow_agent.personalities.assistant 'explain modems to me please'
 
 touch -a .env
@@ -21,5 +21,4 @@ docker run -i \
        --mount type=bind,src="$PWD",dst=/app \
        -e GH_TOKEN="$GH_TOKEN" \
        -e AI_API_TOKEN="$AI_API_TOKEN" \
-       -e GITHUB_AUTH_HEADER \
        "ghcr.io/githubsecuritylab/seclab-taskflow-agent" "$@"
