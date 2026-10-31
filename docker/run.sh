@@ -21,4 +21,5 @@ docker run -i \
        --mount type=bind,src="$PWD",dst=/app \
        -e GH_TOKEN="$GH_TOKEN" \
        -e AI_API_TOKEN="$AI_API_TOKEN" \
+       -e GITHUB_AUTH_HEADER \
        "ghcr.io/githubsecuritylab/seclab-taskflow-agent" "$@"
